@@ -1,7 +1,7 @@
 # git_help
 
 
-#Local Repositories
+## Local Repositories
 
 git (locally) has a directory (.git) which you commit your files to and this is your 'local repository'. This is different from systems like svn where you add and commit to the remote repository immediately.
 
@@ -9,7 +9,7 @@ git stores each version of a file that changes by saving the entire file. It is 
 
 git doesn't 'lock' files at all and thus avoid the 'exclusive lock' functionality for an edit (older systems like pvcs come to mind), so all files can always be edited, even when off-line. It actually does an amazing job of merging file changes (within the same file!) together during pulls or fetches/pushes to a remote repository such as github. The only time you need to do manual changes (actually editing a file) is if two changes involve the same line(s) of code.
 
-#Branches
+## Branches
 
 Branches allow you to preserve the main code (the 'master' branch), make a copy (a new branch) and then work within that new branch. When you've finished, you merge the changes made in the branch back in to the master repository. Many organizations use branches for each piece of work whether it is a feature, bug or chore item. Other organizations only use branches for major changes such as version upgrades. With a branch you control and manage the branch, whereas with a fork someone else controls accepting the code back in.
 Broadly speaking there are two main approaches to doing branches. The first is to keep most changes on the master branch, only using branches for larger and longer-running things like version changes where you want to have two branches available for different needs. The second is whereby you basically make a branch for every feature request, bug fix or chore and then manually decide when to actually merge those branches into the main master branch. Though this sounds tedious, this is a common approach and is the one that I currently use and recommend because this keeps the master branch cleaner and it's the master that we promote to production, so we only want completed, tested code, via the rebasing and merging of branches.
@@ -21,11 +21,11 @@ Tracking branches
 
 These are the branches that are named origin/branch_name (as opposed to just branch_name). When you are pushing and pulling the code to/from remote repositories this is actually the mechanism through which that happens. For example when you git push a branch called 'building_groups', your branch goes first to origin/building_groups and then that goes to the remote repository (actually that's an over-simplification but good enough for now). Similarly if you do a git fetch building_groups the file that is retrieved is placed in your origin/building_groups branch. You can then choose to merge this branch into your local copy. Our practice is to always do a git fetch and a manual merge rather than just a git pull (which does both of the above in one step).
 
-#Fetching new branches.
+## Fetching new branches.
 
 Getting new branches: At the initial point of a clone you will have all the branches. However, if other developers add branches and push them to the remote there needs to be a way to 'know' about those branches and their names in order to be able to pull them down locally. This is done via a git fetch which will get all new and changed branches into the locally repository using the tracking branches (e.g. origin/). Once fetched, one can git branch --remote to list the tracking branches and git checkout [branch] to actually switch to any given one.
 
-#Merging
+## Merging
 
 Merging is the process of combining code changes from different branches, or from different versions of the same branch (for example when a local branch and remote are out of sync.). If one has developed work in a branch and the work is complete, ready and tested, then it can be merged into the master branch. This is done by git checkout master to switch to the master branch, then git merge your_branch. The merge will bring all the different files and even different changes to the same files together. This means that it will actually change the code inside files to merge all the changes. When doing the checkout of master it's also recommended to do a git pull origin master to get the very latest version of the remote master merged into your local master. If the remote master changed, i.e. moved forward, you will see information that reflects that during that git pull. If that is the case (master changed) you are advised to git checkout your_branch and then rebase it to master so that your changes actually get "replayed" on top of the "new" master. Then you would continue with getting master up-to-date as shown in the next paragraph.
 
@@ -40,7 +40,7 @@ Note that's a ~ NOT a - brings up the following:
 https://i.stack.imgur.com/QU4yP.png
 Be careful though and use this tool 'gingerly'. Do one squash/delete/reorder at a time, exit and save that commit, then reenter the tool. If commits are not contiguous you can reorder them (and then squash as needed). You can actually delete commits here too but you really need to be sure of what you are doing when you do that!
 
-#Forks
+## Forks
 
 There are two main approaches to collaboration in git repositories. The first, detailed above is directly via branches that people pull and push from/to. These collaborators have their ssh keys registered with the remote repository. This will let them push directly to that repository. The downside is that you have to maintain the list of users. The other approach - forking - allows anybody to 'fork' the repository, basically making a local copy in their own git repository account. They can then make changes and when finished send a 'pull request' (really it's more of a 'push' from them and a 'pull' request for the actual repository maintainer) to get the code accepted.
 This second method, using forks, does not require someone to maintain a list of users for the repository.
@@ -53,11 +53,11 @@ When you 'fork' - in the github web browser gui you can click on enter image des
 Once you have the local copy, you can make changes as you wish (by pulling and pushing them to a local machine). When you are done then you submit a 'pull request' to the original repository owner/admin (sounds fancy but actually you just click on this:- https://i.stack.imgur.com/XTHBB.pngenter image description here)and they 'pull' it in.
 More common for a team working on code together is to 'clone' the repository (click on the 'copy' icon on the repository's main screen). Then, locally type git clone [paste] This will set you up locally and you can also push and pull to the (shared) github location.
 
-#Clones
+## Clones
 
 As indicated in the section on github, a clone is a copy of a repository. When you have a remote repository you issue the git clone command against its URL and you then end up with a local copy, or clone of the repository. This clone has everything, the files, the master branch, the other branches, all the existing commits, the whole shebang. It is this clone that you do your adds and commits against and then the remote repository itself is what you push those commits to. It's this local/remote concept that makes git (and systems similar to it such as Mercurial) a DVCS (Distributed Version Control System) as opposed to the more traditional CVS's (Code Versioning Systems) such as SVN, PVCS, CVS, etc. where you commit directly to the remote repository.
 
-#Visualization
+## Visualization
 
 Visualization of the core concepts can be seen at
 http://marklodato.github.com/visual-git-guide/index-en.html and
@@ -76,7 +76,7 @@ smart-git GUI
 Note that even with a gui tool, you will probably do a lot of commands at the command line.
 For this I have the following aliases in my ~/.bash_aliases file (which is called from my ~/.bashrc file for each terminal session:
 
-# git
+## git
 alias gst='git status' # Warning: gst conflicts with gnu-smalltalk (when used).
 alias gb='git branch'
 alias gco='git checkout'
